@@ -1,4 +1,4 @@
-// Package imath provides some integer math functions.
+// Package imath provides some integer math constants and functions.
 package imath
 
 // Constants stolen from https://groups.google.com/d/msg/golang-nuts/a9PitPAHSSU/ziQw1-QHw3EJ
