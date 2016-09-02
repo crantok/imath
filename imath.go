@@ -9,7 +9,8 @@ const (
 	MinInt  = -MaxInt - 1
 )
 
-// Min gets the minimum value from a set of ints.
+// Min gets the minimum value from a set of ints. When called with zero
+// arguments, Min returns MaxInt.
 func Min(a ...int) int {
 
 	min := MaxInt
@@ -23,7 +24,8 @@ func Min(a ...int) int {
 	return min
 }
 
-// Max gets the maximum value from a set of ints.
+// Max gets the maximum value from a set of ints. When called with zero
+// arguments, Max returns MinInt.
 func Max(a ...int) int {
 
 	max := MinInt
