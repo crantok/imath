@@ -2,12 +2,11 @@
 
 Package imath provides some integer math constants
 
-    // Constants stolen from https://groups.google.com/d/msg/golang-nuts/a9PitPAHSSU/ziQw1-QHw3EJ
     const (
-    	MaxUint = ^uint(0)
-    	MinUint = 0
-    	MaxInt  = int(MaxUint >> 1)
-    	MinInt  = -MaxInt - 1
+    	MinUint uint = 0                 // binary: all zeroes
+    	MaxUint      = ^MinUint          // binary: all ones
+    	MaxInt       = int(MaxUint >> 1) // binary: all ones except high bit
+    	MinInt       = ^MaxInt           // binary: all zeroes except high bit
     )
 
 and functions.
