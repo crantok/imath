@@ -1,25 +1,23 @@
 // Package imath provides some integer math constants and functions.
 package imath
 
-// Golang does not provide constants for maximum and minimum integer values for types whose
-// size is platform-dependent, so they are provided here.
-// Constants stolen from https://groups.google.com/d/msg/golang-nuts/a9PitPAHSSU/ziQw1-QHw3EJ
-// with additional comments for my own benefit.
+// Go does not provide constants for maximum and minimum int and unit values.
+// These values can be calulated without knowing their implementation size.
+// The section of the go language specification on numeric types
+//     https://golang.org/ref/spec#Numeric_types
+// contains the necessary information:
+//
+//     The value of an n-bit integer is n bits wide and represented using two's complement arithmetic.
+//
+//     There is also a set of predeclared numeric types with implementation-specific sizes:
+//
+//     uint     either 32 or 64 bits
+//     int      same size as uint
 const (
-	// The maximum value of an unsigned integer has all bits set to 1.
-	MaxUint = ^uint(0)
-	
-	MinUint = 0
-	
-	// The maximum value of a signed integer has all bits set to 1 except the high bit.
-	// This shifted value works because int and uint have the same number of bits.
-	// That relationship is explicit in the Go language spec (Types / Numeric types).
-	MaxInt  = int(MaxUint >> 1)
-	
-	// The minimum value of a signed integer implemented as twos complement is negative with
-	// an absolute value one greater than the maximum integer.
-	// The bit pattern for this number has all bits set to zero except the high bit.
-	MinInt  = -MaxInt - 1
+	MinUint uint = 0                 // binary: all zeroes
+	MaxUint      = ^MinUint          // binary: all ones
+	MaxInt       = int(MaxUint >> 1) // binary: all ones except high bit
+	MinInt       = ^MaxInt           // binary: all zeroes except high bit
 )
 
 // Min gets the minimum value from a set of ints. When called with zero
